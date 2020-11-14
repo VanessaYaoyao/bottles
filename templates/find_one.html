@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>捞一个</title>
+</head>
+<body>
+你捞到了别人扔的漂流瓶<br>
+这是里面的内容:<br>
+<h5>{{ request.session.content }}</h5>
+<form method="post">
+    {% csrf_token %}
+     <textarea name="reply" cols="25" rows="5"></textarea>
+    <br>
+     <input type="submit" value="回复TA">
+     <a href='{% url 'salvage' %}'>扔回海里</a>
+     <a href='{% url 'index' %}'>回到主页</a>
+    <br>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+</form>
+</body>
+</html>

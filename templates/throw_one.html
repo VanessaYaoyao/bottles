@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扔一个</title>
+</head>
+<body>
+
+<form method="post">
+{% csrf_token %}
+<a href='{% url 'index' %}'>回到主页</a><br>
+你可以在这里写下一段话，然后把它扔进大海里<br>
+    <textarea name="content" cols="20" rows="10"></textarea>
+    <br>
+    <input type="submit" value="扔出去">
+    {% if error %}
+    {{ error }}
+    {% endif %}
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<h1>欢迎来到个人中心页面！</h1>
+用户名：{{ user.username }}<br>
+邮箱： {{ user.email }}<br>
+昵称：{{ user.name }}<br>
+简介：{{ user.description }}<br>
+性别：{% if user.sex %}
+        男<br>
+    {% else %}
+        女<br>
+    {% endif %}
+{% if user.avatar %}
+头像: <img src="{{ user.avatar.url }}" style="max-width: 10%;border-radius: 25%;" class="col-md-4">
+{% else %}暂无头像
+{% endif %}
+<br>
+<a href='{% url 'edit_information' %}'>编辑个人信息</a>
+<a href='{% url 'change_password' %}'>修改密码</a>
+<a href='{% url 'index' %}'>回到主页</a>
+</body>
+</html>

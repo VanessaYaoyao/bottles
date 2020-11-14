@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打捞漂流瓶</title>
+</head>
+<body>
+{% csrf_token %}
+<h1>欢迎来打捞漂流瓶！</h1>
+<a href='{% url 'index' %}'>回到主页</a><br>
+<a href='{% url 'throw_one' %}'>扔一个</a>
+<a href='{% url 'find_one' %}'>捞一个</a>
+<a href='{% url 'mybottle' %}'>我的瓶子</a>
+
+</body>
+</html>

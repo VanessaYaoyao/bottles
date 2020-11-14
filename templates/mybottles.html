@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的瓶子</title>
+</head>
+<body>
+<a href='{% url 'salvage' %}'>返回</a><br><br>
+
+    {% for i in whole %}
+        {% if i.id %}
+            {% if i.throw_num == 1 %}
+                <h4>我扔出的：</h4>
+            {% endif %}
+            漂流瓶内容：{{ i.content }}<br>
+            {% if i.reply %}
+            回复内容：{{ i.reply }}<br>
+            回复瓶子的人：<a href="{% url 'its_profile' i.replier %}">{{ i.replier }}</a><br>
+            {% endif %}
+            {% if  not i.reply %}
+                此瓶子尚未被人回复！<br>
+                <a href="{% url "bottle_delete" i.id %}">删除瓶子</a><br>
+            {% endif %}
+            <br>
+        {% endif %}
+
+        {% if i.owner %}
+            {% if i.reply_num == 1 %}
+                <h4>我回复的：</h4>
+            {% endif %}
+            漂流瓶内容：{{ i.content }}<br>
+            回复内容：{{ i.reply }}<br>
+            扔瓶子的人：<a href="{% url "its_profile" i.owner %}">{{ i.owner }}</a><br>
+            <br>
+        {% endif %}
+
+        {% if i.thebottle__content %}
+            {% if i.find_num == 1 %}
+                <h4>我捞起的：</h4>
+            {% endif %}
+             漂流瓶内容：{{ i.thebottle__content }}<br>
+            扔瓶子的人：<a href="{% url "its_profile" i.thebottle__owner %}">{{ i.thebottle__owner }}</a><br>
+            <br>
+        {% endif %}
+
+    {% endfor %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if whole.has_previous %}
+            <a href="?page={{ whole.previous_page_number }}">上一页</a><br>
+        {% endif %}
+
+        <span class="current">
+            第{{ whole.number }}页 共{{ whole.paginator.num_pages }}页<br>
+        </span>
+
+        {% if whole.has_next %}
+            <a href="?page={{ whole.next_page_number }}">下一页</a><br>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

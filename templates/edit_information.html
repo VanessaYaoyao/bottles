@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑个人信息</title>
+</head>
+<body>
+<a href='{% url 'index' %}'>回到主页</a>
+<form method="post" action="" enctype='multipart/form-data'>
+ {% csrf_token %}
+    昵称：<input type="text" name="name"value='{{ request.session.name }}'><br>
+    性别:<br>
+    男<input type="radio" name="sex" value="1"><br>
+    女<input type="radio" name="sex" value="0"><br>
+    简介: <textarea name="description" cols="20" rows="10">{{ request.session.description }}</textarea><br>
+    头像: <input type="file" name="avatar"><br>
+    <input type="submit" value="提交">
+    <br>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+</form>
+
+</body>
+</html>

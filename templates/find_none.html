@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>海星</title>
+</head>
+<body>
+{% if message %}
+{{ message }}
+{% else %}
+    你捞到了一只海星，待会再来试一下吧。<br>
+    <a href='{% url 'salvage' %}'>返回</a>
+{% endif %}
+</body>
+</html>
